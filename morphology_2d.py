@@ -7,7 +7,7 @@ Created on Thu Jul 20 17:45:18 2023
 """
 
 import numpy as np
-from scipy.integrate import simps
+from scipy.integrate import simpson
 
 import matplotlib.pyplot as plt
 plt.rcParams.update({'font.size': 16})
@@ -472,7 +472,7 @@ def lnprob_small_fov(pos, x, y):
                              np.linspace(min(y), max(y), nbin))
     f = plummer2d(xbin, ybin, rs=rs, q=q, theta=theta, x0=x0, y0=y0) + bg
     # evaluate the integral
-    int_f = simps(simps(f, ybin[:, 0]), xbin[0, :])
+    int_f = simpson(simpson(f, ybin[:, 0]), xbin[0, :])
 
     p = (plummer2d(x, y, rs=rs, q=q, theta=theta, x0=x0, y0=y0) + bg) / int_f
 
